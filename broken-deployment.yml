@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service # Not matching service and route
+  namespace: training-project
+  labels:
+    app: orders-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-service
+  template:
+    metadata:
+      labels:
+        app: orders-service
+    spec:
+      containers:
+        - name: orders-service
+          image: quay.io/training/orders-service:v2.0.0 # Will be changed
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_PORT
+              value: ""  # This should be defined, but it's missing
+            - name: ORDER_PROCESS_TIMEOUT
+              value: ""  # Also undefined
+          # No readiness or liveness probes
+          # No Secret or ConfigMap usage
