@@ -1,0 +1,14 @@
+K8S Exercise instructions
+
+step 1:
+The app is broken. Your job is to fix it so that the pod becomes healthy and running. The route should response after the fix.
+
+step 2:
+Good job, you fixed the app! But is it everything? we want our code and configuration to be separated. the code should always be as generic as we can, and the configuration should be stored elsewhere. research about ConfigMaps and figure out what should be on them.
+
+step 3: 
+Wow! the code looks a lot cleaner now. 
+Wait… if an attacker somehow got a look at our ConfigMap he will have access to all of our sensitive information. find another way to store sensitive information and make sure to store there only the relevant things.
+
+step 4: 
+Great, now the code is clean and safe. the next step is to add a readiness and liveness probe to your deployment using the enndpoints /health and /live on port 8080.
