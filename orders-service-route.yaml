@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: orders-service
+  namespace: training-project
+spec:
+  to:
+    kind: Service
+    name: orders-service
+  port:
+    targetPort: http
+  tls:
+    termination: edge
