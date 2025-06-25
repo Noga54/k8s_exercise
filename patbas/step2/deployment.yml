@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-service
+  namespace: training-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-service
+  template:
+    metadata:
+      labels:
+        app: orders-service
+    spec:
+      containers:
+        - name: orders-service
+          image: quay.io/training/orders-service:v2.0.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: orders-config
+                  key: APP_PORT
+            - name: ORDER_PROCESS_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: orders-config
+                  key: ORDER_PROCESS_TIMEOUT
+            - name:
+              valueFrom:
+              configMapKeyRef:
+                name: orders-config
+                key: DB_USER
+            - name:
+              valueFrom:
+              configMapKeyRef:
+                name: orders-config
+                key: DB_PASS
