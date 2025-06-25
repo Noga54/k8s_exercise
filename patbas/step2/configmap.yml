@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orders-config
+  namespace: training-project
+data:
+  APP_PORT: "8080"
+  ORDER_PROCESS_TIMEOUT: "45"
+  DB_USER: "admin"
+  DB_PASS: "pass"
